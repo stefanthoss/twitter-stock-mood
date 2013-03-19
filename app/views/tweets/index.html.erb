@@ -2,10 +2,10 @@
 
 <table>
   <tr>
-    <th>Text</th>
     <th>Date</th>
-    <th>Retweet count</th>
     <th>Stream</th>
+    <th>Mood positive</th>
+    <th>Mood negative</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +13,10 @@
 
 <% @tweets.each do |tweet| %>
   <tr>
-    <td><%= tweet.text %></td>
     <td><%= tweet.date %></td>
-    <td><%= tweet.retweet_count %></td>
     <td><%= tweet.stream_id %></td>
+    <td><%= tweet.mood_positive %></td>
+    <td><%= tweet.mood_negative %></td>
     <td><%= link_to 'Show', tweet %></td>
     <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
     <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>

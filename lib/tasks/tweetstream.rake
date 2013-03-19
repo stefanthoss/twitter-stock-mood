@@ -23,6 +23,7 @@ task :tweetstream => :environment do
   end.on_reconnect do |timeout, retries|
     puts "#{timeout}, #{retries}"
   end.sample do |status|
-    Tweet.create(:text => status.text, :date => status.created_at, :retweet_count => status.retweet_count)
+    mood = analyzer.analyze status.text
+    Tweet.create(:date => status.created_at, :mood_positive => mood[:positive], :mood_negative => mood[:negative])
   end
 end

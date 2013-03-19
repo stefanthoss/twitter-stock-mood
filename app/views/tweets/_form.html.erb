@@ -12,20 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :text %><br />
-    <%= f.text_field :text %>
-  </div>
-  <div class="field">
     <%= f.label :date %><br />
     <%= f.datetime_select :date %>
   </div>
   <div class="field">
-    <%= f.label :retweet_count %><br />
-    <%= f.number_field :retweet_count %>
-  </div>
-  <div class="field">
     <%= f.label :stream_id %><br />
     <%= f.number_field :stream_id %>
+  </div>
+  <div class="field">
+    <%= f.label :mood_positive %><br />
+    <%= f.number_field :mood_positive %>
+  </div>
+  <div class="field">
+    <%= f.label :mood_negative %><br />
+    <%= f.number_field :mood_negative %>
   </div>
   <div class="actions">
     <%= f.submit %>

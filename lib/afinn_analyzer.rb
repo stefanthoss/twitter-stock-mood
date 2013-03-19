@@ -22,6 +22,6 @@ class AfinnAnalyzer
         end
       end
     end
-    return positive, negative
+    return { :positive => positive, :negative => negative }
   end
 end

@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  text: MyString
-  date: 2013-03-17 22:08:46
-  retweet_count: 1
+  date: 2013-03-18 20:54:23
   stream_id: 1
+  mood_positive: 1
+  mood_negative: 1
 
 two:
-  text: MyString
-  date: 2013-03-17 22:08:46
-  retweet_count: 1
+  date: 2013-03-18 20:54:23
   stream_id: 1
+  mood_positive: 1
+  mood_negative: 1
