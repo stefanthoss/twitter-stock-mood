@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318033019) do
+ActiveRecord::Schema.define(:version => 20130318050846) do
 
   create_table "keywords", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(:version => 20130318033019) do
     t.integer  "stock_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "tweets", :force => true do |t|
+    t.string   "text"
+    t.datetime "date"
+    t.integer  "retweet_count"
+    t.integer  "stream_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

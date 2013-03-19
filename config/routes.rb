@@ -1,4 +1,7 @@
 TwitterStockMood::Application.routes.draw do
+  resources :tweets
+
+
   get "home/index"
 
   resources :stocks

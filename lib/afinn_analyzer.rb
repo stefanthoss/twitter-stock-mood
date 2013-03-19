@@ -1,7 +1,7 @@
 class AfinnAnalyzer
-  def initialize
+  def initialize path
     @dictionary = []
-    file = File.new "AFINN-111.txt", "r"
+    file = File.new path, "r"
     while line = file.gets
       words = line.split "\t"
       @dictionary << { :word => words[0], :mood => words[1].to_i }
@@ -11,10 +11,17 @@ class AfinnAnalyzer
   end
 
   def analyze text
-    sentiment = 0
+    positive = 0
+    negative = 0
     @dictionary.each do |word|
-      sentiment = sentiment + word[:mood] if text.downcase.include? word[:word]
+      if text.downcase.include? word[:word]
+        if word[:mood] > 0
+          positive = positive + 1
+        else
+          negative = negative + 1
+        end
+      end
     end
-    return sentiment
+    return positive, negative
   end
 end

@@ -1,0 +1,29 @@
+<h1>Listing tweets</h1>
+
+<table>
+  <tr>
+    <th>Text</th>
+    <th>Date</th>
+    <th>Retweet count</th>
+    <th>Stream</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tweets.each do |tweet| %>
+  <tr>
+    <td><%= tweet.text %></td>
+    <td><%= tweet.date %></td>
+    <td><%= tweet.retweet_count %></td>
+    <td><%= tweet.stream_id %></td>
+    <td><%= link_to 'Show', tweet %></td>
+    <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
+    <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tweet', new_tweet_path %>
