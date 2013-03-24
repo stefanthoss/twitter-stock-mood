@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319035423) do
+ActiveRecord::Schema.define(:version => 20130324053207) do
 
   create_table "keywords", :force => true do |t|
     t.string   "name"
@@ -30,8 +30,12 @@ ActiveRecord::Schema.define(:version => 20130319035423) do
   create_table "streams", :force => true do |t|
     t.string   "name"
     t.integer  "stock_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "consumer_key"
+    t.string   "consumer_secret"
+    t.string   "oauth_token"
+    t.string   "oauth_token_secret"
   end
 
   create_table "tweets", :force => true do |t|

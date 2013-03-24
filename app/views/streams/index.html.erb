@@ -4,6 +4,10 @@
   <tr>
     <th>Name</th>
     <th>Stock</th>
+    <th>Consumer Key</th>
+    <th>Consumer Secret</th>
+    <th>Oauth Token</th>
+    <th>Oauth Token Secret</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +17,10 @@
   <tr>
     <td><%= stream.name %></td>
     <td><%= stream.stock_id %></td>
+    <td><%= stream.consumer_key %></td>
+    <td><%= stream.consumer_secret %></td>
+    <td><%= stream.oauth_token %></td>
+    <td><%= stream.oauth_token_secret %></td>
     <td><%= link_to 'Show', stream %></td>
     <td><%= link_to 'Edit', edit_stream_path(stream) %></td>
     <td><%= link_to 'Destroy', stream, method: :delete, data: { confirm: 'Are you sure?' } %></td>

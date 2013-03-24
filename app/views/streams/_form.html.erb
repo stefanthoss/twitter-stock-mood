@@ -19,6 +19,22 @@
     <%= f.label :stock_id %><br />
     <%= f.number_field :stock_id %>
   </div>
+  <div class="field">
+    <%= f.label :consumer_key %><br />
+    <%= f.text_field :consumer_key %>
+  </div>
+  <div class="field">
+    <%= f.label :consumer_secret %><br />
+    <%= f.text_field :consumer_secret %>
+  </div>
+  <div class="field">
+    <%= f.label :oauth_token %><br />
+    <%= f.text_field :oauth_token %>
+  </div>
+  <div class="field">
+    <%= f.label :oauth_token_secret %><br />
+    <%= f.text_field :oauth_token_secret %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
