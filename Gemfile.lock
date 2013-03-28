@@ -138,6 +138,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  daemons
   jquery-rails
   pg
   rails (= 3.2.11)

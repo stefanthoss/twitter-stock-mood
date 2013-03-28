@@ -27,6 +27,9 @@ end
 
 gem 'jquery-rails'
 
+# Daemons
+gem 'daemons'
+
 # Twitter Streaming API
 gem 'tweetstream'
 
