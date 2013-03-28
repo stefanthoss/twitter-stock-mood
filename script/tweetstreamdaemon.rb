@@ -17,13 +17,21 @@ puts "Starting TweetStream for #{stream.name}"
 
 analyzer = AfinnAnalyzer.new "lib/AFINN-111.txt"
 
-TweetStream::Client.new.on_error do |message|
-  puts message
-end.on_limit do |skip_count|
-  puts skip_count
-end.on_reconnect do |timeout, retries|
-  puts "#{timeout}, #{retries}"
-end.sample do |status|
+stream = TweetStream::Client.new
+
+stream.on_error do |message|
+  puts "#{stream.name} - error: #{message}"
+end
+
+stream.on_limit do |skip_count|
+  puts "#{stream.name} - limit: #{skip_count}"
+end
+
+stream.on_reconnect do |timeout, retries|
+  puts "#{stream.name} - timeout: #{timeout}, retries: #{retries}"
+end
+
+stream.sample do |status|
   mood = analyzer.analyze status.text
   Tweet.create(:date => status.created_at, :mood_positive => mood[:positive], :mood_negative => mood[:negative])
 end
