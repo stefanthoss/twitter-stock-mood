@@ -1,4 +1,3 @@
-require 'rake'
 require 'tweetstream'
 require 'afinn_analyzer'
 require 'yajl'
@@ -13,25 +12,34 @@ TweetStream.configure do |config|
   config.auth_method        = :oauth
 end
 
-puts "Starting TweetStream for #{stream.name}"
+keywords = []
+stream.keywords.each { |keyword| keywords << keyword[:name] }
+
+if keywords.empty?
+  puts "Error: no keywords for stream #{stream.name}"
+  exit
+end
+
+puts "Starting stream #{stream.name} with keywords #{keywords.inspect}"
 
 analyzer = AfinnAnalyzer.new "lib/AFINN-111.txt"
 
 tweetstream = TweetStream::Client.new
 
 tweetstream.on_error do |message|
-  puts "#{stream.name} - error: #{message}"
+  puts "Stream #{stream.name} - error: #{message}"
 end
 
 tweetstream.on_limit do |skip_count|
-  puts "#{stream.name} - limit: #{skip_count}"
+  puts "Stream #{stream.name} - limit: #{skip_count}"
 end
 
 tweetstream.on_reconnect do |timeout, retries|
-  puts "#{stream.name} - timeout: #{timeout}, retries: #{retries}"
+  puts "Stream #{stream.name} - timeout: #{timeout}, retries: #{retries}"
 end
 
-tweetstream.sample do |status|
+tweetstream.track(keywords) do |status|
   mood = analyzer.analyze status.text
-  Tweet.create(:date => status.created_at, :mood_positive => mood[:positive], :mood_negative => mood[:negative])
+  # puts status.text
+  Tweet.create(:date => status.created_at, :stream_id => stream.id, :mood_positive => mood[:positive], :mood_negative => mood[:negative])
 end
