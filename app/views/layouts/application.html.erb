@@ -7,21 +7,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <nav>
-            <ul class="nav">
-              <li><%= link_to "Home", root_path %></li>
-              <li><%= link_to "Keywords", keywords_path %></li>
-              <li><%= link_to "Stocks", stocks_path %></li>
-              <li><%= link_to "Streams", streams_path %></li>
-              <li><%= link_to "Tweets", tweets_path %></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
+    <%= render 'layouts/header' %>
     <div class="container">
       <%= yield %>
       <%= render 'layouts/footer' %>

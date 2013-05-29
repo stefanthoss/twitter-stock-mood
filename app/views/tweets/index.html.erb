@@ -1,6 +1,6 @@
 <h1>Listing <%= @tweets.count %> tweets</h1>
 
-<table>
+<table class="table table-striped table-condensed">
   <tr>
     <th>Date</th>
     <th>Stream</th>
@@ -25,7 +25,3 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Tweet', new_tweet_path %>

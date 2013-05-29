@@ -1,6 +1,8 @@
-<h1>Listing stocks</h1>
+<h1>Listing <%= @stocks.count %> stocks</h1>
 
-<table>
+<p><%= link_to 'New Stock', new_stock_path %></p>
+
+<table class="table table-striped table-condensed">
   <tr>
     <th>Name</th>
     <th>Symbol</th>
@@ -19,7 +21,3 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Stock', new_stock_path %>

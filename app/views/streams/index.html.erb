@@ -1,13 +1,12 @@
-<h1>Listing streams</h1>
+<h1>Listing <%= @streams.count %> streams</h1>
 
-<table>
+<p><%= link_to 'New Stream', new_stream_path %></p>
+
+<table class="table table-striped table-condensed">
   <tr>
     <th>Name</th>
     <th>Stock</th>
-    <th>Consumer Key</th>
-    <th>Consumer Secret</th>
-    <th>Oauth Token</th>
-    <th>Oauth Token Secret</th>
+    <th>Oauth Data</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,17 +16,15 @@
   <tr>
     <td><%= stream.name %></td>
     <td><%= stream.stock_id %></td>
-    <td><%= stream.consumer_key %></td>
-    <td><%= stream.consumer_secret %></td>
-    <td><%= stream.oauth_token %></td>
-    <td><%= stream.oauth_token_secret %></td>
+    <td>
+      <b>Consumer Key:</b> <%= stream.consumer_key %><br />
+      <b>Consumer Secret:</b> <%= stream.consumer_secret %><br />
+      <b>Oauth Token:</b> <%= stream.oauth_token %><br />
+      <b>Oauth Token Secret:</b> <%= stream.oauth_token_secret %>
+    </td>
     <td><%= link_to 'Show', stream %></td>
     <td><%= link_to 'Edit', edit_stream_path(stream) %></td>
     <td><%= link_to 'Destroy', stream, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Stream', new_stream_path %>
