@@ -3,14 +3,22 @@
 </div>
 
 <h2>Moods</h2>
-<div id="graphdiv"></div>
+<div id="graphdiv" style="width:100%; height:300px;"></div>
 <script type="text/javascript">
-  g = new Dygraph(
 
-    // containing div
-    document.getElementById("graphdiv"),
+var xhReq = new XMLHttpRequest();
+xhReq.open("GET", "/streams/get_chart_header.json", false);
+xhReq.send(null);
+var header = JSON.parse(xhReq.responseText);
 
-    // CSV or path to a CSV file.
+var xhReq = new XMLHttpRequest();
+xhReq.open("GET", "/streams/get_chart_data.json", false);
+xhReq.send(null);
+var data = JSON.parse(xhReq.responseText);
 
-  );
+for (var i = 0; i < data.length; i++) {
+  data[i][0] = new Date(data[i][0]);
+}
+
+chart = new Dygraph(document.getElementById("graphdiv"), data, { labels: header, legend: 'always', labelsDivWidth: 400, ylabel: "% positive" });
 </script>

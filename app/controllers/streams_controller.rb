@@ -82,7 +82,7 @@ class StreamsController < ApplicationController
   end
 
   def get_chart_header
-    header = []
+    header = ["Date"]
     Stream.all.each { |stream| header << stream.name }
     respond_to do |format|
       format.json { render json: header }
@@ -90,5 +90,27 @@ class StreamsController < ApplicationController
   end
 
   def get_chart_data
+    data = []
+
+    Tweet.select(:date).map(&:date).uniq.each { |tweet| data << [tweet] }
+
+    Stream.all.each do |stream|
+      data.each do |d|
+        tweets = Tweet.where("date = ? AND stream_id = ?", d.first, stream.id)
+        if tweets.count == 0
+          d << nil
+        else
+          d << tweets.first.mood_positive.to_f / (tweets.first.mood_positive.to_f + tweets.first.mood_negative.to_f)
+        end
+      end
+    end
+
+    data.each do |d|
+      d[0] = d.first.strftime("%D %T")
+    end
+
+    respond_to do |format|
+      format.json { render json: data }
+    end
   end
 end
