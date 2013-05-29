@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130324053207) do
     t.integer  "stream_id"
     t.integer  "mood_positive"
     t.integer  "mood_negative"
+    t.integer  "tweet_count"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

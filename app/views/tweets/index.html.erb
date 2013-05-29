@@ -1,4 +1,4 @@
-<h1>Listing tweets</h1>
+<h1>Listing <%= @tweets.count %> tweets</h1>
 
 <table>
   <tr>
@@ -6,6 +6,7 @@
     <th>Stream</th>
     <th>Mood positive</th>
     <th>Mood negative</th>
+    <th>Tweet count</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,6 +18,7 @@
     <td><%= tweet.stream_id %></td>
     <td><%= tweet.mood_positive %></td>
     <td><%= tweet.mood_negative %></td>
+    <td><%= tweet.tweet_count %></td>
     <td><%= link_to 'Show', tweet %></td>
     <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
     <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>

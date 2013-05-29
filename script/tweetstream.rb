@@ -40,6 +40,16 @@ end
 
 tweetstream.track(keywords) do |status|
   mood = analyzer.analyze status.text
-  # puts status.text
-  Tweet.create(:date => status.created_at, :stream_id => stream.id, :mood_positive => mood[:positive], :mood_negative => mood[:negative])
+  current_hour = Time.new(status.created_at.year, status.created_at.month, status.created_at.day, status.created_at.hour)
+  tweets = Tweet.where("date = ?", current_hour)
+  if tweets.count == 0
+    # new hour
+    Tweet.create(:date => current_hour, :stream_id => stream.id, :mood_positive => mood[:positive], :mood_negative => mood[:negative], :tweet_count => 1)
+  else
+    # same hour
+    tweets.first.mood_positive = tweets.first.mood_positive + mood[:positive]
+    tweets.first.mood_negative = tweets.first.mood_negative + mood[:negative]
+    tweets.first.tweet_count = tweets.first.tweet_count + 1
+    tweets.first.save
+  end
 end

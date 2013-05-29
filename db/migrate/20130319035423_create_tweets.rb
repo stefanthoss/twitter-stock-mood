@@ -5,6 +5,7 @@ class CreateTweets < ActiveRecord::Migration
       t.integer :stream_id
       t.integer :mood_positive
       t.integer :mood_negative
+      t.integer :tweet_count
 
       t.timestamps
     end
