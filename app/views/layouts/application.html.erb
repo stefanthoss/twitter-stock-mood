@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>TwitterStockMood</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<p><%= link_to "Home", root_path %>&nbsp;|&nbsp;<%= link_to "Keywords", keywords_path %>&nbsp;|&nbsp;<%= link_to "Stocks", stocks_path %>&nbsp;|&nbsp;<%= link_to "Streams", streams_path %>&nbsp;|&nbsp;<%= link_to "Tweets", tweets_path %></p>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>TwitterStockMood</title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <nav>
+            <ul class="nav">
+              <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "Keywords", keywords_path %></li>
+              <li><%= link_to "Stocks", stocks_path %></li>
+              <li><%= link_to "Streams", streams_path %></li>
+              <li><%= link_to "Tweets", tweets_path %></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+    </div>
+  </body>
 </html>
