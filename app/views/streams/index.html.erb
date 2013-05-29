@@ -15,7 +15,7 @@
 <% @streams.each do |stream| %>
   <tr>
     <td><%= stream.name %></td>
-    <td><%= stream.stock_id %></td>
+    <td><%= stream.stock.name unless stream.stock.nil? %></td>
     <td>
       <b>Consumer Key:</b> <%= stream.consumer_key %><br />
       <b>Consumer Secret:</b> <%= stream.consumer_secret %><br />

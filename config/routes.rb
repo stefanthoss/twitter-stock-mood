@@ -4,12 +4,15 @@ TwitterStockMood::Application.routes.draw do
 
   get "home/index"
 
+
   resources :stocks
 
 
   resources :keywords
 
 
+  get "streams/get_chart_header"
+  get "streams/get_chart_data"
   resources :streams
 
 

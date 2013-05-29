@@ -15,7 +15,7 @@
 <% @tweets.each do |tweet| %>
   <tr>
     <td><%= tweet.date %></td>
-    <td><%= tweet.stream_id %></td>
+    <td><%= tweet.stream.name unless tweet.stream.nil? %></td>
     <td><%= tweet.mood_positive %></td>
     <td><%= tweet.mood_negative %></td>
     <td><%= tweet.tweet_count %></td>

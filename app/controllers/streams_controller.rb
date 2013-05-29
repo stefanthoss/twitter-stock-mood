@@ -80,4 +80,15 @@ class StreamsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def get_chart_header
+    header = []
+    Stream.all.each { |stream| header << stream.name }
+    respond_to do |format|
+      format.json { render json: header }
+    end
+  end
+
+  def get_chart_data
+  end
 end

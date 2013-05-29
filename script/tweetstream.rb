@@ -20,7 +20,7 @@ if keywords.empty?
   exit
 end
 
-puts "Starting stream #{stream.name} with keywords #{keywords.inspect}"
+puts "Starting stream #{stream.name} (ID: #{ARGV[0]}) with keywords #{keywords.inspect}"
 
 analyzer = AfinnAnalyzer.new "lib/AFINN-111.txt"
 
@@ -41,7 +41,7 @@ end
 tweetstream.track(keywords) do |status|
   mood = analyzer.analyze status.text
   current_hour = Time.new(status.created_at.year, status.created_at.month, status.created_at.day, status.created_at.hour)
-  tweets = Tweet.where("date = ?", current_hour)
+  tweets = Tweet.where("date = ? AND stream_id = ?", current_hour, ARGV[0])
   if tweets.count == 0
     # new hour
     Tweet.create(:date => current_hour, :stream_id => stream.id, :mood_positive => mood[:positive], :mood_negative => mood[:negative], :tweet_count => 1)
