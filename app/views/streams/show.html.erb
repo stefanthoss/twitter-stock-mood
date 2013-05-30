@@ -30,6 +30,11 @@
   <%= @stream.oauth_token_secret %>
 </p>
 
+<p>
+  <b>Last Tweet:</b>
+  <%= @stream.tweets.last.updated_at %>
+</p>
+
 
 <%= link_to 'Edit', edit_stream_path(@stream) %> |
 <%= link_to 'Back', streams_path %>
