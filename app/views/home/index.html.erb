@@ -1,9 +1,5 @@
-<div class="center hero-unit">
-  <h1>TwitterStockMood</h1>
-</div>
-
-<h2>Moods</h2>
-<div id="graphdiv" style="width:100%; height:300px;"></div>
+<h2>Mood Chart</h2>
+<div id="graphdiv" style="width:100%; height:400px;"></div>
 <script type="text/javascript">
 
 var xhReq = new XMLHttpRequest();
@@ -20,5 +16,15 @@ for (var i = 0; i < data.length; i++) {
   data[i][0] = new Date(data[i][0]);
 }
 
-chart = new Dygraph(document.getElementById("graphdiv"), data, { labels: header, legend: 'always', labelsDivWidth: 400, ylabel: "% positive" });
+chart = new Dygraph(document.getElementById("graphdiv"), data, { labels: header, legend: 'always', ylabel: "% positive" });
 </script>
+
+<h2>Notifications</h2>
+<table class="table table-bordered">
+  <tr><th>Time</th><th>Reason</th></tr>
+  <% @streams.each do |stream| %>
+  <% if stream.tweets.count > 0 && Time.now - stream.tweets.last.updated_at > 600 %>
+  <tr class="error"><td><%= Time.at(stream.tweets.last.updated_at.to_i + 600) %></td><td>No tweets for <%= link_to "#{stream.name} (ID: #{stream.id})", stream %> in the last 10 minutes.</td></tr>
+  <% end %>
+  <% end %>
+</table>

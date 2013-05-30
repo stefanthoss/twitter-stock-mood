@@ -25,7 +25,7 @@
       <b>Oauth Token:</b> <%= stream.oauth_token %><br />
       <b>Oauth Token Secret:</b> <%= stream.oauth_token_secret %>
     </td>
-    <td><%= stream.tweets.last.updated_at %>&nbsp;<%= '<i class="icon-exclamation-sign"></i>'.html_safe if Time.now.to_i - stream.tweets.last.updated_at.to_i > 30*60 %></td>
+    <td><%= stream.tweets.last.updated_at unless stream.tweets.empty? %></td>
     <td><%= link_to 'Show', stream %></td>
     <td><%= link_to 'Edit', edit_stream_path(stream) %></td>
     <td><%= link_to 'Destroy', stream, method: :delete, data: { confirm: 'Are you sure?' } %></td>
