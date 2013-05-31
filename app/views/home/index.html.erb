@@ -21,10 +21,12 @@ chart = new Dygraph(document.getElementById("graphdiv"), data, { labels: header,
 
 <h2>Notifications</h2>
 <table class="table table-bordered">
-  <tr><th>Time</th><th>Reason</th></tr>
+  <tr><th>Time</th><th>Message</th></tr>
   <% @streams.each do |stream| %>
   <% if stream.tweets.count > 0 && Time.now - stream.tweets.last.updated_at > 600 %>
-  <tr class="error"><td><%= Time.at(stream.tweets.last.updated_at.to_i + 600) %></td><td>No tweets for <%= link_to "#{stream.name} (ID: #{stream.id})", stream %> in the last 10 minutes.</td></tr>
+  <tr class="error"><td><%= Time.at(stream.tweets.last.updated_at.to_i + 600).strftime("%F %T %Z") %></td><td>No tweets for <%= link_to "#{stream.name} (ID: #{stream.id})", stream %> in the last 10 minutes.</td></tr>
+  <% elsif stream.tweets.empty? %>
+  <tr class="info"><td>-</td><td><%= link_to "#{stream.name} (ID: #{stream.id})", stream %> hasn't been started yet.</td></tr>
   <% end %>
   <% end %>
 </table>

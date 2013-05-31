@@ -32,7 +32,7 @@
 
 <p>
   <b>Last Tweet:</b>
-  <%= @stream.tweets.last.updated_at %>
+  <%= @stream.tweets.last.updated_at.strftime("%F %T %Z") unless @stream.tweets.empty? %>
 </p>
 
 
