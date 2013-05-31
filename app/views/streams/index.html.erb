@@ -8,7 +8,6 @@
     <th>Name</th>
     <th>Stock</th>
     <th>Oauth Data</th>
-    <th>Last Tweet</th>
     <th></th>
     <th></th>
     <th></th>
@@ -25,7 +24,6 @@
       <b>Oauth Token:</b> <%= stream.oauth_token %><br />
       <b>Oauth Token Secret:</b> <%= stream.oauth_token_secret %>
     </td>
-    <td><%= stream.tweets.last.updated_at.strftime("%F %T %Z") unless stream.tweets.empty? %></td>
     <td><%= link_to 'Show', stream %></td>
     <td><%= link_to 'Edit', edit_stream_path(stream) %></td>
     <td><%= link_to 'Destroy', stream, method: :delete, data: { confirm: 'Are you sure?' } %></td>

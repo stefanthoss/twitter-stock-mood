@@ -1,5 +1,9 @@
 <h2>Mood Chart</h2>
-<div id="graphdiv" style="width:100%; height:400px;"></div>
+
+<div id="graph_labels" width="900px"></div><br />
+
+<div id="graph_div"></div><br />
+
 <script type="text/javascript">
 
 var xhReq = new XMLHttpRequest();
@@ -16,10 +20,28 @@ for (var i = 0; i < data.length; i++) {
   data[i][0] = new Date(data[i][0]);
 }
 
-chart = new Dygraph(document.getElementById("graphdiv"), data, { labels: header, legend: 'always', ylabel: "% positive" });
+chart = new Dygraph(document.getElementById("graph_div"), data, { labels: header, labelsDiv: document.getElementById("graph_labels"), width: 900, legend: 'always', ylabel: "% positive" });
+
+$(document).ready(function(){
+  $(".chart_toggle").change(function() {
+    chart.setVisibility(parseInt(this.id), this.checked);
+  });
+});
+
 </script>
 
+<%= form_tag("/search", :method => "get") do %>
+  <% i = -1 %>
+  <% Stream.all.each do |stream| %>
+  <label class="checkbox inline" for="<%= i = i + 1 %>">
+    <input type=checkbox id="<%= i %>" class="chart_toggle" checked>
+    <%= stream.name %>
+  </label>
+  <% end %>
+<% end %>
+
 <h2>Notifications</h2>
+
 <table class="table table-bordered">
   <tr><th>Time</th><th>Message</th></tr>
   <% @streams.each do |stream| %>
