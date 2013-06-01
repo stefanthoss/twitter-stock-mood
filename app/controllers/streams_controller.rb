@@ -81,6 +81,14 @@ class StreamsController < ApplicationController
     end
   end
 
+  def start_tweetstream
+    com = `RAILS_ENV=production rails runner script/tweetstream.rb #{param[:id]}`
+
+    respond_to do |format|
+      format.json { render json: com }
+    end
+  end
+
   def get_chart_header
     header = ["Date"]
     Stream.all.each { |stream| header << stream.name }

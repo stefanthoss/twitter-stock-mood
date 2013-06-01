@@ -1,3 +1,18 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $(".start-process").click(function() {
+    console.log("Starting process " + $(this).val());
+
+    var xhReq = new XMLHttpRequest();
+    xhReq.open("GET", "/streams/start_tweetstream.json?id="+$(this).val(), false);
+    xhReq.send(null);
+    console.log(xhReq.responseText);
+  });
+});
+
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -35,6 +50,9 @@
   <%= @stream.tweets.last.updated_at.strftime("%F %T %Z") unless @stream.tweets.empty? %>
 </p>
 
+<p>
+  <button type="button" class="btn btn-warning start-process" value="<%= @stream.id %>">Start process</button>
+</p>
 
 <%= link_to 'Edit', edit_stream_path(@stream) %> |
 <%= link_to 'Back', streams_path %>

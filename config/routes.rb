@@ -11,6 +11,7 @@ TwitterStockMood::Application.routes.draw do
   resources :keywords
 
 
+  get "streams/start_tweetstream"
   get "streams/get_chart_header"
   get "streams/get_chart_data"
   resources :streams
