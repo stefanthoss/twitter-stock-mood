@@ -1,5 +1,6 @@
 class AfinnAnalyzer
   def initialize path
+    Rails.logger.info "Building dictionary"
     @dictionary = []
     file = File.new path, "r"
     while line = file.gets
@@ -7,7 +8,7 @@ class AfinnAnalyzer
       @dictionary << { :word => words[0], :mood => words[1].to_i }
     end
     file.close
-    puts "#{@dictionary.length} words in dictionary"
+    Rails.logger.info "#{@dictionary.length} words in dictionary"
   end
 
   def analyze text

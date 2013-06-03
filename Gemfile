@@ -28,6 +28,7 @@ end
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'dygraphs-rails'
+gem 'logger'
 
 # Daemons
 gem 'daemons'

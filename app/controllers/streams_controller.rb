@@ -1,3 +1,5 @@
+require 'tweet_streamer'
+
 class StreamsController < ApplicationController
   # GET /streams
   # GET /streams.json
@@ -82,10 +84,11 @@ class StreamsController < ApplicationController
   end
 
   def start_tweetstream
-    com = `RAILS_ENV=production rails runner script/tweetstream.rb #{param[:id]}`
+   stream = TweetStreamer.new(params[:id].to_i)
+   status = stream.start
 
     respond_to do |format|
-      format.json { render json: com }
+      format.json { render json: status }
     end
   end
 
