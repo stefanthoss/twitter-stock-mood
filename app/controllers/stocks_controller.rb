@@ -15,6 +15,10 @@ class StocksController < ApplicationController
   def show
     @stock = Stock.find(params[:id])
 
+    YahooFinance::get_standard_quotes(@stock.symbol).each do |symbol, quote|
+      @quote = quote
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @stock }

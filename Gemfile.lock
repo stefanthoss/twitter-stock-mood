@@ -135,6 +135,7 @@ GEM
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    yahoofinance (1.2.2)
     yajl-ruby (1.1.0)
 
 PLATFORMS
@@ -153,3 +154,4 @@ DEPENDENCIES
   sqlite3
   tweetstream
   uglifier (>= 1.0.3)
+  yahoofinance

@@ -10,6 +10,16 @@
   <%= @stock.symbol %>
 </p>
 
+<p>
+  <b>Time zone:</b>
+  <%= @stock.time_zone %>
+</p>
+
+<p>
+  <b>Current quote:</b>
+  <%= "#{@quote.lastTrade} (#{@quote.date} #{@quote.time})" unless @quote.nil? %>
+</p>
+
 
 <%= link_to 'Edit', edit_stock_path(@stock) %> |
 <%= link_to 'Back', stocks_path %>
