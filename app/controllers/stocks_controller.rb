@@ -1,4 +1,6 @@
 class StocksController < ApplicationController
+  helper StocksHelper
+
   # GET /stocks
   # GET /stocks.json
   def index
@@ -14,10 +16,6 @@ class StocksController < ApplicationController
   # GET /stocks/1.json
   def show
     @stock = Stock.find(params[:id])
-
-    YahooFinance::get_standard_quotes(@stock.symbol).each do |symbol, quote|
-      @quote = quote
-    end
 
     respond_to do |format|
       format.html # show.html.erb

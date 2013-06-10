@@ -17,7 +17,8 @@
 
 <p>
   <b>Current quote:</b>
-  <%= "#{@quote.lastTrade} (#{@quote.date} #{@quote.time})" unless @quote.nil? %>
+  <% quote = get_latest_quote(@stock.symbol) %>
+  <%= quote.lastTrade %> (<%= quote.date %> <%= quote.time %>)
 </p>
 
 
